@@ -76,24 +76,34 @@ export default function Lapangan() {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-12">
-                    <Carilokasi />
-                    <div className='col-md-12'>
-                        <label className="labels">Kategori</label>
-                        <select className='form-control form-select' id='inKategori'>
-                            <option value=''>--- Pilih Kategori ---</option>
-                            <option value='Futsal'>Futsal</option>
-                            <option value='Bulutangkis'>Bulutangkis</option>
-                            <option value='Voli'>Voli</option>
-                            <option value='Basket'>Basket</option>
-                        </select>
-                    </div>
-                    <div className='d-flex flex-row justify-content-center '>
-                        <a href='/lapangan' className='btn btn-fill text-white mt-4' onClick={CariLokasi}
-                            style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>
-                            Cari</a>
+                <div className='row mb-4 container'>
+                    <a className='btn btn-fill text-white' data-bs-toggle="collapse" href="#deskripsiCollapse" style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>
+                        <span className='text-start'><icon className='fa fa-search'></icon> Cari Berdasarkan Lokasi</span>
+                    </a>
+                    <div>
+                        <div className="row collapse multi-collapse text-start mt-4" id="deskripsiCollapse">
+                            <div className="col-md-12">
+                                <Carilokasi />
+                                <div className='col-md-12'>
+                                    <label className="labels">Kategori</label>
+                                    <select className='form-control form-select' id='inKategori'>
+                                        <option value=''>--- Pilih Kategori ---</option>
+                                        <option value='Futsal'>Futsal</option>
+                                        <option value='Bulutangkis'>Bulutangkis</option>
+                                        <option value='Voli'>Voli</option>
+                                        <option value='Basket'>Basket</option>
+                                    </select>
+                                </div>
+                                <div className='d-flex flex-row justify-content-center '>
+                                    <a href='/lapangan' className='btn btn-fill text-white mt-4' onClick={CariLokasi}
+                                        style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>
+                                        Cari</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div className="container my-4 text-black-50" >
                     <h4 style={{ color: 'black' }}>Rekomendasi Lapangan</h4>
                     <hr></hr>
