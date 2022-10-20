@@ -2,7 +2,7 @@ const { connectToDatabase } = require('../../lib/mongodb');
 const ObjectId = require('mongodb').ObjectId;
 // mengambil data dari collection Transaksi
 async function getLapangan(req, res) {
-    const { namaVenueReq } = req.query
+    const { provinsi,kabupaten,kecamatan,kategori } = req.query
     try {
         // connect to the database
         let { db } = await connectToDatabase();
@@ -17,7 +17,7 @@ async function getLapangan(req, res) {
             .aggregate([
                 {
                     $match: {
-                        "namaVenue": { $regex: `${namaVenueReq}`, $options: "i" }
+                         provinsi: provinsi , kabupaten : kabupaten , kecamatan : kecamatan ,kategori:kategori
                     }
                 },
                 {

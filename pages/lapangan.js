@@ -1,13 +1,15 @@
-import Head from 'next/head'
+import Link from 'next/link'
 import Image from 'next/image'
 import Helmet from 'react-helmet'
 import Carousel from 'react-bootstrap/Carousel'
+import Router from 'next/router'
 import CardRekomendasi from '../components/user/lapangan/CardRekomendasi'
 import CardKategori from '../components/user/lapangan/CardKategori'
  import Pagination from '../components/Pagination'
 import { useState } from 'react'
 import useSWR from 'swr'
-import Carilokasi from '../components/user/cari-lokasi'
+// import Carilokasi from '../components/user/cari-lokasi'
+import Carilokasi from "../components/provinsi";
 
 
 
@@ -25,8 +27,6 @@ export default function Lapangan() {
         return <div>Something went wrong</div>
     }
 
-
-
     let lapangan = data['message']
     console.log('Agregate:')
     console.log(lapangan)
@@ -40,8 +40,27 @@ export default function Lapangan() {
     const howManyPages = Math.ceil(lapangan.lapangan.length / postsPerPage)
     //Tambahan Pagination Current Post Map
 
+    let provinsi = ''
+    let kabupaten = ''
+    let kecamatan = ''
+    let kategori = ''
+
+    const CariLokasi = (e) => {
+        e.preventDefault();
+        provinsi = document.getElementById('inProvinsi').value
+        kabupaten = document.getElementById('inKabupaten').value
+        kecamatan = document.getElementById('inKecamatan').value
+        kategori = document.getElementById('inKategori').value
+        Router.push({
+            pathname: '/cari-lokasi-lapangan',
+            query: {
+                provinsi: provinsi, kabupaten: kabupaten, kecamatan: kecamatan, kategori: kategori
+            }
+
+        })
 
 
+    }
     return (
         <>
             <div className='container my-4'>
@@ -57,8 +76,23 @@ export default function Lapangan() {
                         </div>
                     </div>
                 </div>
-                <div className="container">
-                    <Carilokasi/>
+                <div className="col-md-12">
+                    <Carilokasi />
+                    <div className='col-md-12'>
+                        <label className="labels">Kategori</label>
+                        <select className='form-control form-select' id='inKategori'>
+                            <option value=''>--- Pilih Kategori ---</option>
+                            <option value='Futsal'>Futsal</option>
+                            <option value='Bulutangkis'>Bulutangkis</option>
+                            <option value='Voli'>Voli</option>
+                            <option value='Basket'>Basket</option>
+                        </select>
+                    </div>
+                    <div className='d-flex flex-row justify-content-center '>
+                        <a href='/lapangan' className='btn btn-fill text-white mt-4' onClick={CariLokasi}
+                            style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>
+                            Cari</a>
+                    </div>
                 </div>
                 <div className="container my-4 text-black-50" >
                     <h4 style={{ color: 'black' }}>Rekomendasi Lapangan</h4>

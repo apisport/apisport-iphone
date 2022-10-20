@@ -86,6 +86,10 @@ export default function Detailvenue() {
         </div>
       </div>
       <div>
+        <a style={{ color: "black" }}>
+          <h5 className='d-flex justify-content-between'><b> Deskripsi</b>
+          </h5>
+        </a>
         <b>
           Lapangan {venue.infoVenue[0].namaVenue} merupakan lapangan olahraga {venue.infoVenue[0].kategori} yang berlokasi di 
           {venue.infoVenue[0].kabupaten},{venue.infoVenue[0].kecamatan},{venue.infoVenue[0].alamat}. Gedung lapangan{venue.infoVenue[0].namaVenue}
