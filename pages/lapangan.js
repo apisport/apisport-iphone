@@ -1,15 +1,11 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import Helmet from 'react-helmet'
-import Carousel from 'react-bootstrap/Carousel'
 import Router from 'next/router'
 import CardRekomendasi from '../components/user/lapangan/CardRekomendasi'
 import CardKategori from '../components/user/lapangan/CardKategori'
- import Pagination from '../components/Pagination'
+import Pagination from '../components/Pagination'
+import Carilokasi from "../components/provinsi";
 import { useState } from 'react'
 import useSWR from 'swr'
 // import Carilokasi from '../components/user/cari-lokasi'
-import Carilokasi from "../components/provinsi";
 
 
 

@@ -1,9 +1,11 @@
 import Pagination from '../components/Pagination'
 import CardRekomendasi from '../components/user/lapangan/CardRekomendasi'
+import Carilokasi from "../components/provinsi";
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Link from 'next/link'
+import Router from 'next/router';
 
 
 export default function CariLapangan() {
@@ -42,7 +44,22 @@ export default function CariLapangan() {
     const howManyPages = Math.ceil(searchArr.length / postsPerPage)
     //Tambahan Pagination Current Post Map
 
+    const CariLokasi = (e) => {
+        e.preventDefault();
+        provinsi = document.getElementById('inProvinsi').value
+        kabupaten = document.getElementById('inKabupaten').value
+        kecamatan = document.getElementById('inKecamatan').value
+        kategori = document.getElementById('inKategori').value
+        Router.push({
+            pathname: '/cari-lokasi-lapangan',
+            query: {
+                provinsi: provinsi, kabupaten: kabupaten, kecamatan: kecamatan, kategori: kategori
+            }
 
+        })
+
+
+    }
     return (
         <>
             <div className='container my-4'>
@@ -63,6 +80,33 @@ export default function CariLapangan() {
                                 <button className="form-control col-2 mt-2 col-sm-2 btn shadow-sm" style={{ backgroundColor: '#ffbe2e' }}><i className="fa fa-search text-white"></i>
                                 </button>
                             </Link>
+                        </div>
+                        <div className='row mb-4 mt-4'>
+                            <a className='btn btn-fill text-white' data-bs-toggle="collapse" href="#deskripsiCollapse" style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>
+                                <span className='text-start'><icon className='fa fa-search'></icon> Cari Berdasarkan Lokasi</span>
+                            </a>
+                            <div>
+                                <div className="row collapse multi-collapse text-start mt-4" id="deskripsiCollapse">
+                                    <div className="col-md-12">
+                                        <Carilokasi />
+                                        <div className='col-md-12'>
+                                            <label className="labels">Kategori</label>
+                                            <select className='form-control form-select' id='inKategori'>
+                                                <option value=''>--- Pilih Kategori ---</option>
+                                                <option value='Futsal'>Futsal</option>
+                                                <option value='Bulutangkis'>Bulutangkis</option>
+                                                <option value='Voli'>Voli</option>
+                                                <option value='Basket'>Basket</option>
+                                            </select>
+                                        </div>
+                                        <div className='d-flex flex-row justify-content-center '>
+                                            <a href='/lapangan' className='btn btn-fill text-white mt-4' onClick={CariLokasi}
+                                                style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>
+                                                Cari</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
