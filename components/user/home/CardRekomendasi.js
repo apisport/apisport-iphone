@@ -9,7 +9,7 @@ const CardRekomendasi = ({ props }) => {
                 pathname: '/detail-venue',
                 query: {
                     namaVenue: props.namaVenue
-                }
+                },
 
             }}>
                 <div className="col-md-4 mt-3 col-12 card shadow p-3">

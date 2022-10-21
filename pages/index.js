@@ -33,6 +33,14 @@ export default function Home() {
   console.log(rekomendasi)
   return (
     <>
+      <Head>
+        <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
+        <meta name="google" content="notranslate" key="notranslate" />
+        <meta name="googlebot" content="noindex,nofollow" />
+        <meta name="robots" content="all" />
+        <meta name="robots" content="noindex,nofollow" />
+        <link rel="canonical" href="https://example.com/products/phone" />
+      </Head>
 
       <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">

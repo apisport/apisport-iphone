@@ -56,7 +56,7 @@ export default function CariLapangan() {
                 provinsi: provinsi, kabupaten: kabupaten, kecamatan: kecamatan, kategori: kategori
             }
 
-        })
+        } ,'/cari-lokasi-lapangan')
 
 
     }

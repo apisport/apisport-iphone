@@ -52,100 +52,114 @@ export default function CardLapangan({ props }) {
     };
 
     return (
-  
-            <div className="card border-0 mb-3 shadow-sm">
-                <div className="card-body rounded p-3">
-                    {/* ROW CONTENT */}
-                    <div className="row">
-                        <div className="col-md-4">
-                            <Carousel gambar={props.gambar} nama={props.namaLapangan} />
+
+        <div className="card border-0 mb-3 shadow-sm">
+            <div className="card-body rounded p-3">
+                {/* ROW CONTENT */}
+                <div className="row">
+                    <div className="col-md-4">
+                        <Carousel gambar={props.gambar} nama={props.namaLapangan} />
+                    </div>
+
+                    <div className="col-lg-8 p-0 ">
+                        <h5 className="card-title mt-2 justify-content-center text-start" style={{ color: "black" }}><strong>{props.namaLapangan}</strong></h5>
+                        <div>
+                            <h4 className='text-start'>Daftar Jadwal</h4>
+                            <hr></hr>
                         </div>
 
-                        <div className="col-lg-8 p-0 ">
-                            <h5 className="card-title mt-2 justify-content-center text-start" style={{ color: "black" }}><strong>{props.namaLapangan}</strong></h5>
-                            <div>
-                                <h4 className='text-start'>Daftar Jadwal</h4>
-                                <hr></hr>
-                            </div>
-
-                            <div className='row' >
-                                {gabunganJadwal.length === 0 ? (
-                                    <h2>Tidak ada data</h2>
-                                ) : (
-                                    <>
-                                        {gabunganJadwal.map((data, index) => (
-                                            <div className='col-6 col-sm-3 mb-2'>
-                                                <div className='card'>
-                                                    <div className='card-body'>
-                                                        <span>{data}</span><br></br>
-                                                        <span>Rp {gabunganHarga[index].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}</span>
-                                                    </div>
+                        <div className='row' >
+                            {gabunganJadwal.length === 0 ? (
+                                <h2>Tidak ada data</h2>
+                            ) : (
+                                <>
+                                    {gabunganJadwal.map((data, index) => (
+                                        <div className='col-6 col-sm-3 mb-2'>
+                                            <div className='card'>
+                                                <div className='card-body'>
+                                                    <span>{data}</span><br></br>
+                                                    <span>Rp {gabunganHarga[index].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}</span>
                                                 </div>
                                             </div>
-                                        ))}
-                                    </>
-                                )}
-                            </div>
-                            <div className="d-flex flex-row justify-content-evenly">
-                                <div className='text-center justify-content-center mt-2 mb-2'>
-                                    {/* <Link href={`/mitra/update-lapangan?namaVenue=${props.namaVenue}&namaLapangan=${props.namaLapangan}&deskripsi=${props.deskripsi}&gambar=${props.gambar}&jadwalPagi=${JSON.stringify(props.jadwalPagi)}&jadwalMalam=${JSON.stringify(props.jadwalMalam)}&hargaPagi=${props.hargaPagi}&hargaMalam=${props.hargaMalam}`}> */}
-                                    <Link href={{
-                                        pathname: '/mitra/update-lapangan',
-                                        query: {
-                                            namaVenue: props.namaVenue,
-                                            namaLapangan: props.namaLapangan,
-                                            deskripsi: props.deskripsi,
-                                            gambarStringify: JSON.stringify(props.gambar),
-                                            jadwalPagi: JSON.stringify(props.jadwalPagi),
-                                            jadwalMalam: JSON.stringify(props.jadwalMalam),
-                                            hargaPagi: props.hargaPagi,
-                                            hargaMalam: props.hargaMalam,
-                                            minOrder: props.minOrder
-                                        }
-                                    }} >
-                                        <button className='btn btn-success text-white p-2' style={{ backgroundColor: '#00cc36', color: 'rgb(255, 255, 255)' }}>
-                                            <icon className='fa fa-pencil'></icon >&nbsp;Edit Lapangan
-                                        </button>
-                                    </Link>
-                                </div>
-                                <div className='text-center justify-content-center mt-2 mb-2'>
-                                    <Link href={{
-                                        pathname: '/mitra/detail-lapangan',
-                                        query: {
-                                            idLapangan: props._id,
-                                            namaVenue: props.namaVenue,
-                                            namaLapangan: props.namaLapangan
-                                        }
-
-                                    }}>
-                                        <button className='btn btn-success text-white p-2' style={{ backgroundColor: '#2b7ead', color: 'rgb(255, 255, 255)' }}>
-                                            <icon className='fa fa-eye'></icon >&nbsp;Lihat Selengkapnya
-                                        </button>
-                                    </Link>
-
-                                </div>
-                                <div className='text-center justify-content-center mt-2 mb-2'>
-                                    <button className='btn btn-success text-white p-2'
-                                        style={{ backgroundColor: '#ed0010', color: 'rgb(255, 255, 255)' }}
-                                        onClick={() => deleteLapangan()}
-                                        type='submit'
-                                    >
-                                        <icon className='fa fa-trash'></icon >&nbsp;Hapus Lapangan
+                                        </div>
+                                    ))}
+                                </>
+                            )}
+                        </div>
+                        <div className="d-flex flex-row justify-content-evenly">
+                            <div className='text-center justify-content-center mt-2 mb-2'>
+                                {/* <Link href={`/mitra/update-lapangan?namaVenue=${props.namaVenue}&namaLapangan=${props.namaLapangan}&deskripsi=${props.deskripsi}&gambar=${props.gambar}&jadwalPagi=${JSON.stringify(props.jadwalPagi)}&jadwalMalam=${JSON.stringify(props.jadwalMalam)}&hargaPagi=${props.hargaPagi}&hargaMalam=${props.hargaMalam}`}> */}
+                                <Link href={{
+                                    pathname: '/mitra/update-lapangan',
+                                    query: {
+                                        namaVenue: props.namaVenue,
+                                        namaLapangan: props.namaLapangan,
+                                        deskripsi: props.deskripsi,
+                                        gambarStringify: JSON.stringify(props.gambar),
+                                        jadwalPagi: JSON.stringify(props.jadwalPagi),
+                                        jadwalMalam: JSON.stringify(props.jadwalMalam),
+                                        hargaPagi: props.hargaPagi,
+                                        hargaMalam: props.hargaMalam,
+                                        minOrder: props.minOrder
+                                    }
+                                }} >
+                                    <button className='btn btn-success text-white p-2' style={{ backgroundColor: '#00cc36', color: 'rgb(255, 255, 255)' }}>
+                                        <icon className='fa fa-pencil'></icon >&nbsp;Edit Lapangan
                                     </button>
-                                </div>
+                                </Link>
                             </div>
-                            <div className="d-flex flex-row justify-content-evenly">
-                                <span>
-                                    {props.minOrder === true ? ('Minimal Pemesanan 2 Jam'):('Tidak ada Minimal Pemesanan')}
-                                </span>
-                                
+                            <div className='text-center justify-content-center mt-2 mb-2'>
+                                <Link href={{
+                                    pathname: '/mitra/info-lapangan',
+                                    query: {
+                                        idLapangan: props._id,
+                                        namaVenue: props.namaVenue,
+                                        namaLapangan: props.namaLapangan
+                                    }
+
+                                }}>
+                                    <button className='btn btn-success text-white p-2' style={{ backgroundColor: '#2b7ead', color: 'rgb(255, 255, 255)' }}>
+                                        <icon className='fa fa-eye'></icon >&nbsp;Lihat Selengkapnya
+                                    </button>
+                                </Link>
+
                             </div>
+                            <div className='text-center justify-content-center mt-2 mb-2'>
+                                <button className='btn btn-success text-white p-2'
+                                    style={{ backgroundColor: '#ed0010', color: 'rgb(255, 255, 255)' }}
+                                    onClick={() => deleteLapangan()}
+                                    type='submit'
+                                >
+                                    <icon className='fa fa-trash'></icon >&nbsp;Hapus Lapangan
+                                </button>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-row justify-content-evenly">
+                            <span>
+                                {props.minOrder === true ? ('Minimal Pemesanan 2 Jam') : ('Tidak ada Minimal Pemesanan')}
+                            </span>
 
                         </div>
+                        <div className="d-flex flex-row justify-content-evenly">
+                            <Link href={{
+                                pathname: '/mitra/tambah-transaksi',
+                                query: {
+                                    idLapangan: props._id,
+                                    namaVenue: props.namaVenue,
+                                    namaLapangan: props.namaLapangan
+                                }
+
+                            }}>
+                                <button className="btn btn-fill text-white "  > <icon className='fa fa-plus'/> Tambah Transaksi</button>
+                            </Link>
+
+                        </div>
+
                     </div>
-                    {/* END ROW */}
                 </div>
+                {/* END ROW */}
             </div>
+        </div>
 
     )
 }

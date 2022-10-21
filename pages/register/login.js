@@ -36,6 +36,7 @@ export default function Login() {
             if (emailDb.mitra.length === 0 && emailDb.user.length === 0 && emailDb.mitraPending.length === 0) {
                 alert('Anda belum terdaftar, Mohon untuk register')
                 handleSignOut()
+                Router.push('/register')
             } else if (emailDb.user.length != 0) {
                 Router.push('/')
             } else if (emailDb.mitra.length != 0) {

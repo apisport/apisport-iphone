@@ -53,7 +53,7 @@ export default function Lapangan() {
                 provinsi: provinsi, kabupaten: kabupaten, kecamatan: kecamatan, kategori: kategori
             }
 
-        })
+        }, '/cari-lokasi-lapangan')
 
 
     }

@@ -46,7 +46,7 @@ const LayoutUser = ({ children }) => {
                     <meta name="msapplication-TileColor" content="#2B5797" />
                     <meta name="msapplication-tap-highlight" content="no" />
                     <meta name="theme-color" content="#000000" />
-
+                    
                     <link rel="apple-touch-icon" href="/icons/touch-icon-iphone.png" />
                     <link rel="apple-touch-icon" sizes="152x152" href="/icons/touch-icon-ipad.png" />
                     <link rel="apple-touch-icon" sizes="180x180" href="/icons/touch-icon-iphone-retina.png" />
