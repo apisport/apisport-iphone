@@ -430,9 +430,9 @@ export default function DetailLapangan() {
                         <span>{infoLapangan.deskripsi}</span>
                     </div>
                 </div>
-                <div>
+                {/* <div>
                     <span>Cek er{infoLapangan.minOrder}</span>
-                </div>
+                </div> */}
             </div>
             <div className='mt-3'>
                 <form onSubmit={handlePost}>
