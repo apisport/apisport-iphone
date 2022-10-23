@@ -8,14 +8,21 @@ async function getLapangan(req, res) {
 
         let lapanganUser = await db
             .collection('mitra')
-            .aggregate([{
-                $lookup: {
-                    from: "lapangan",
-                    localField: "namaVenue",
-                    foreignField: "namaVenue",
-                    as: "lapanganVenue"
-                }
-            }])
+            .aggregate([
+                {
+                    $match: {
+                        "hariOperasional": { $ne: '' }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "lapangan",
+                        localField: "namaVenue",
+                        foreignField: "namaVenue",
+                        as: "lapanganVenue"
+                    },
+                },
+            ])
             .toArray()
         let favoritLapanganUser = await db
             .collection('favorit')
