@@ -149,7 +149,7 @@ export default function Home() {
         </div>
       </div>
       <div className="container">
-        <a href='/lapangan' className='btn' style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>Cari berdasarkan Lokasi</a>
+        <a href='/lapangan' className='btn' style={{ color: "white", backgroundColor: '#ffbe2e', borderRadius: "5px" }}>cariberdasarkan lokasi...</a>
       </div>
 
 

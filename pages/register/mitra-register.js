@@ -50,10 +50,10 @@ export default function MitraRegister() {
   if (session) {
     url = `/api/checkmail?emailReq=${session.user.email}`
   }
-  const { data: data, error } = useSWR(url, fetcher, {refreshInterval: 1000})
+  const { data: data, error } = useSWR(url, fetcher)
 
   if (!data) {
-    return <div>Loading...</div>
+    return <div>Access denied</div>
   } else if (error) {
     return <div>Something went wrong</div>
   }

@@ -5,7 +5,7 @@ export default function tentangKami() {
                 <div className="col-8 col-sm-8">
                     <h3><b>Api Sports</b></h3><hr />
                     <h4>Solusi perolahragaan Anda</h4><br />
-                    <p>Kami membuat website ini untuk mempermudah pemesanan atau membooking lapangan olahraga</p>
+                    <p>Kami membuat websie ini untuk memermudah pemsanan atau memboking lapangan olahraga</p>
                 </div>
                 <div className="col-8 col-sm-6">
                     <div className="d-flex title-font font-medium align-items-center gap-4">
