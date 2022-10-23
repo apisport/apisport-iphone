@@ -198,6 +198,7 @@ export default function MitraTambahTransaksi({ namaVenueProps }) {
                 let email = ''
                 let lapangan = infoLapangan.namaLapangan
                 let noWa = ''
+                let status = 'mitraBelum'
                 let namaVenue = namaVenueProps
                 let jadwalMain = jadwalPesan
                 let diterimaTgl = dateDate
@@ -214,6 +215,7 @@ export default function MitraTambahTransaksi({ namaVenueProps }) {
                     harga,
                     diterimaTgl,
                     diterimaJam,
+                    status
                 };
                 // save the post
                 let response = await fetch('/api/transaksidb', {
