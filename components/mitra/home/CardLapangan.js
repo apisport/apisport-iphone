@@ -110,7 +110,7 @@ export default function CardLapangan({ props }) {
                             </div>
                             <div className='text-center justify-content-center mt-2 mb-2'>
                                 <Link href={{
-                                    pathname: '/mitra/info-lapangan',
+                                    pathname: '/mitra/detail-lapangan',
                                     query: {
                                         idLapangan: props._id,
                                         namaVenue: props.namaVenue,
