@@ -103,13 +103,13 @@ export default function DetailLapangan() {
         const weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
         const weekdayHitung = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
         let today = weekday[day.getUTCDay()]
-        // console.log('Available Hari')
-        // console.log(today)
+        console.log('Available Hari')
+        console.log(today)
 
         let indexAwalHari = weekdayHitung.indexOf(hariTemp[0])
         let indexAkhirHari = weekdayHitung.indexOf(hariTemp[1])
-        // console.log(indexAwalHari)
-        // console.log(indexAkhirHari)
+        console.log(indexAwalHari)
+        console.log(indexAkhirHari)
 
         let totalIndex = indexAkhirHari - indexAwalHari
         let arrayAvailableHariTemp = []
@@ -376,6 +376,10 @@ export default function DetailLapangan() {
         console.log(date)
     }
 
+    const pesanWhatsapp = () => {
+        let text = 'Ambasing'
+        alert(text)
+    }
 
     return (
         <div className="container mt-4">
@@ -526,7 +530,7 @@ export default function DetailLapangan() {
                         }}> */}
 
                         <button type='submit' className='btn btn-fill text-white mt-3' disabled={(session) ? (false) : (true)} onClick={() => checkValue()}>Pesan</button>
-
+                        <button onClick={pesanWhatsapp} className='btn btn-fill text-white mt-3' disabled={(session) ? (false) : (true)} onClick={() => checkValue()}>Pesan Via Whatsapp</button>
                         {/* Session di sini jangan lupa dan button */}
                         {/* disabled={(session) ? (false) : (true)} */}
                         {

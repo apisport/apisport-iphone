@@ -100,8 +100,8 @@ export default function MitraTambahTransaksi({ namaVenueProps }) {
         // console.log(hariTemp)
 
         let day = new Date()
-        const weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
-        const weekdayHitung = ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"];
+        const weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const weekdayHitung = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
         let today = weekday[day.getUTCDay()]
         // console.log('Available Hari')
         // console.log(today)
