@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { Alert } from 'react-bootstrap';
 
 
-export default function DetailLapangan() {
+export default function MitraTambahTransaksi({ namaVenueProps }) {
 
     //Router
     const router = useRouter()
@@ -24,6 +24,7 @@ export default function DetailLapangan() {
     let available = true
     let jamTerisi = []
     let jamFilter = []
+    let hari = ''
     var currentdate = new Date();
     var dateDate = currentdate.getDate() + "/"
         + (currentdate.getMonth() + 1) + "/"
@@ -33,7 +34,6 @@ export default function DetailLapangan() {
         + currentdate.getSeconds();
     console.log(dateDate)
     console.log(dateHours)
-    let hari = '-'
 
 
     //State of Decay
@@ -64,6 +64,10 @@ export default function DetailLapangan() {
     let infoLapangan = lapanganRes.infoLapangan[0]
     let namaHasil = infoLapangan.namaLapangan.split(" ").join("");
 
+    const kembali = () => {
+        Router.back()
+    }
+
     //Function SetAvailable dan Input Date
     const setTglMainFunc = (data) => {
         setTglMain(data)
@@ -92,6 +96,7 @@ export default function DetailLapangan() {
         // console.log(jamTerisi)
         console.log('Jam Filter')
         console.log(jamFilter)
+        console.log(infoLapangan)
     }
 
     const setAvailableHari = () => {
@@ -99,8 +104,8 @@ export default function DetailLapangan() {
         // console.log(hariTemp)
 
         let day = new Date()
-        const weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-        const weekdayHitung = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+        const weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
+        const weekdayHitung = ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"];
         let today = weekday[day.getUTCDay()]
         // console.log('Available Hari')
         // console.log(today)
@@ -178,123 +183,25 @@ export default function DetailLapangan() {
         /*  {
              isCheck ? setTotalHarga(totalHarga => totalHarga + parseInt(harga)) : setTotalHarga(totalHarga => totalHarga - parseInt(harga))
          } */
-        console.log(totalHarga + ' ,' + harga)
+
         setAvailableJam()
         setAvailableJamFilter()
     }
 
     //Handle Post Update DataMain Lapangan
-    const handlePost = async (e) => {
-        e.preventDefault()
-        if (jamFilter.length === 0) {
-            if (jadwalPesan.length > 3) {
-                alert('Batas Maksimum Pemesanan adalah 3')
-            } else if (jadwalPesan.length == 0) {
-                alert('Tidak ada Jadwal yang dipesan')
-            }
-            else {
-                let url = ''
-                if (session) {
-                    url = `/api/pembayarandb?emailReq=${session.user.email}&namaVenueReq=${lapanganRes.infoVenue[0].namaVenue}&tglMainReq=${tglMain}&jadwalPesanReq=${jadwalPesan}&lapanganReq=${infoLapangan.namaLapangan}`
-                }
-                let response1 = await fetch(url, {
-                    method: 'GET'
-                });
-                let data1 = await response1.json();
-                let profil = data1['message'].profil[0]
-                console.log(`JSON Test:`)
-                console.log(profil)
-                let nama = profil.nama
-                let email = profil.email
-                let lapangan = infoLapangan.namaLapangan
-                let noWa = profil.noWa
-                let namaVenue = lapanganRes.infoVenue[0].namaVenue
-                let jadwalMain = jadwalPesan
-                let diterimaTgl = dateDate
-                let diterimaJam = dateHours
-                let status = 'pending'
-                let harga = totalHarga
-                let transaksi = {
-                    nama,
-                    email,
-                    lapangan,
-                    noWa,
-                    namaVenue,
-                    tglMain,
-                    jadwalMain,
-                    harga,
-                    diterimaTgl,
-                    diterimaJam,
-                    status
-                };
-                // save the post
-                let response = await fetch('/api/transaksidb', {
-                    method: 'POST',
-                    body: JSON.stringify(transaksi),
-                });
-                // get the data
-                let data = await response.json();
-                if (data.success) {
-                    // reset the fields
-                    alert('Jadwal Berhasil dipesan, Mohon untuk menyelesaikan pembayaran di halaman berikutnya!')
-                    console.log('Object ID:')
-                    console.log(data.message)
-                    router.push({
-                        pathname: '/pembayaran',
-                        query: {
-                            jadwalPesanReq: JSON.stringify(jadwalPesan),
-                            totalHargaReq: totalHarga,
-                            namaVenueReq: lapanganRes.infoVenue[0].namaVenue,
-                            namaLapanganReq: infoLapangan.namaLapangan,
-                            tglMainReq: tglMain,
-                            diterimaTglReq: diterimaTgl,
-                            diterimaJamReq: diterimaJam,
-                            idTransaksiReq: data.message
-                        }
-                    })
-                }
-                else {
-                    // set the error
-                    console.log(data.message);
-                }
-            }
-        } else {
-            alert('Mohon Maaf jadwal sudah dipesan, Mohon untuk memilih jadwal kembali')
-            Router.reload()
-        }
-
-        // e.preventDefault();
-
-        // // reset error and message
-        // // fields check
-        // try {
-        //     // Update post
-        //     await fetch('/api/datamaindb', {
-        //         method: 'PUT',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             dataMain: _dataMain,
-        //             objectId: infoLapangan._id,
-        //         }),
-        //     });
-        //     // reload the page
-        //     alert('Data sukses diupdate')
-        //     return router.push('/mitra/home');
-        // } catch (error) {
-        //     // Stop publishing state
-        //     console.log('Not Working')
-        // }
-
-    };
-
 
     //Penggabungan Harga dan Jadwal
 
-    const kembali = () => {
-        Router.back()
+    const checkValue = () => {
+        let check = document.getElementsByName('jadwal')
+        for (let i = 0; i < check.length; i++) {
+            console.log(`index ke-${i}`)
+            console.log(JSON.parse(check[i].value))
+        }
+        let date = document.getElementById('tglMain').value
+        console.log(date)
     }
+
 
     return (
         <div className="container mt-4">
@@ -313,15 +220,15 @@ export default function DetailLapangan() {
                                 </>
                             ))}
                         </div>
-                        <div className="carousel-inner">
+                        <div className="carousel-inner row p-1 col-12">
                             {infoLapangan.gambar.map((data, i) => (
                                 <>
                                     {i == 0 ?
-                                        (<div className="carousel-item active">
-                                            <img src={`${data}`} className="" width={400} height={200} />
+                                        (<div className="carousel-item active ">
+                                            <img src={`${data}`} className="img-fluid" />
                                         </div>) :
                                         (<div className="carousel-item">
-                                            <img src={`${data}`} className="" width={400} height={200} />
+                                            <img src={`${data}`} className="img-fluid" />
                                         </div>)}
                                 </>
                             ))}
@@ -349,12 +256,15 @@ export default function DetailLapangan() {
                         <span>{infoLapangan.deskripsi}</span>
                     </div>
                 </div>
+                <div>
+                    <span>Cek er{infoLapangan.minOrder}</span>
+                </div>
             </div>
             <div className='mt-3'>
-                <form onSubmit={handlePost}>
-                    <h4 className='text-start'>Jadwal Lapangan</h4>
+                <form>
+                    <h4 className='text-start' style={{ color: '#EE8F00' }}>Jadwal Lapangan</h4>
                     <input type='date' id='tglMain' value={tglMain} onChange={(e) => setTglMainFunc(e.target.value)} className='form-control mb-4' required></input>
-                    <h5 style={{ color: 'red' }}><b>Hari Operasional: </b>{lapanganRes.infoVenue[0].hariOperasional} </h5>
+                    <h5 style={{ color: 'blue' }}><b>Hari Operasional: </b>{lapanganRes.infoVenue[0].hariOperasional} </h5>
                     <div className='card p-3'>
                         <h5>{hari}</h5>
                         <div className='row' style={{ color: 'white' }}>
@@ -373,7 +283,7 @@ export default function DetailLapangan() {
                                                     autoComplete="off" onChange={(e) => setChange(e, gabunganHarga[index], data)}
                                                     name='jadwal'
 
-                                                    disabled={jamTerisi.indexOf(data) === -1 ? (false) : (true)}
+                                                    disabled={true}
                                                     value={JSON.stringify([`${data}`, gabunganHarga[index]])} />
                                                 <label className="btn btn-outline-success" style={jamTerisi.indexOf(data) === -1 ? ({}) : ({ backgroundColor: 'red', color: 'white' })} htmlFor={`btn-check${index + 1}`}>{data}<br />Rp {gabunganHarga[index].toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}</label><br />
                                             </div>
@@ -383,37 +293,19 @@ export default function DetailLapangan() {
                             }
                             {!available &&
                                 <>
-                                    <h4 className='text-black'>Mitra tidak beroperasi</h4>
+                                    <h4 className='text-black' style={{ color: 'red' }}>Mitra tidak beroperasi pada hari {hari}</h4>
                                 </>
                             }
-                            {/* {gabunganJadwal.length === 0 ? (
-                                <h4>Tidak ada data Jadwal</h4>
-                            ) : ( 
-                                    <>
-                                        
-                                        {gabunganJadwal.map((data, index) => (
-                                        
-                                        <div className='col-6 col-lg-3 mb-2'>
-                                            <div>
-                                                
-                                                <input type="checkbox" className="btn-check" id={`btn-check${index + 1}`} autoComplete="off" onClick={() => setCheck()} name='jadwal' value={JSON.stringify([`${data}`, gabunganHarga[index]])} />
-                                                <label className="btn btn-outline-primary" htmlFor={`btn-check${index + 1}`}>{data}<br />{`Rp ${gabunganHarga[index]}.000`}</label><br />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </>
-                            )} */}
+                            <div className='row mt-3'>
+                                <div className='col-12 d-grid col-lg-12 mb-4'>
+                                    <button type="button" className="btn btn-outline-secondary" onClick={kembali} style={{ borderRadius: '5cm' }}>Kembali</button>
+                                </div>
+                            </div>
 
-                        </div>
-                    </div>
-
-
-                    <div className='row mt-3'>
-                        <div className='col-12 d-grid col-lg-12 mb-4'>
-                            <button type="button" className="btn btn-outline-secondary" onClick={kembali} style={{ borderRadius: '5cm' }}>Kembali</button>
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
 

@@ -15,7 +15,7 @@ export default function Pembayaran() {
     + currentdate.getMinutes() + ":"
     + currentdate.getSeconds();
 
- 
+
   const [nama, setNama] = useState('');
   const [lapangan, setLapangan] = useState('');
   const [noWa, setNoWa] = useState('');
@@ -80,7 +80,7 @@ export default function Pembayaran() {
     nama = nama
     noWa = noWa
     diterima = dateTime
-    
+
   }
   setValue()
 
@@ -94,11 +94,11 @@ export default function Pembayaran() {
       setHargaDP('-')
     }
     // console.log(opsiBayarDP)
-    
+
   }
 
   const hitungHargaDP = () => {
-    let DPhitung = parseInt(profil.infoVenue[0].DP) 
+    let DPhitung = parseInt(profil.infoVenue[0].DP)
     let hargaDPHitung = harga - (((DPhitung / 100) * harga))
     let hargaDPhitungString = hargaDPHitung.toString()
     setHargaDP(hargaDPhitungString)
@@ -134,7 +134,7 @@ export default function Pembayaran() {
     // reset error and message
     setMessage('');
     // fields check
-    if (!nama || !noWa || !noRekening || !opsiBayar || !buktiBayar || !namaVenue || !tglMain || !jadwalMain || !harga || !status || !hargaDP || !diterima) {
+    if (!nama || !noWa || !opsiBayar || !buktiBayar || !namaVenue || !tglMain || !jadwalMain || !harga || !status || !hargaDP || !diterima) {
       alert('Tolong isi semua kolom')
       return setError1('All fields are required');
     }
@@ -165,13 +165,13 @@ export default function Pembayaran() {
     console.log(jamTerisi)
 
     // let jamFilter = jamTerisi.filter(val => !jadwalMain.includes(val));
-    const jamFilter =jadwalMain.filter(value => jamTerisi.includes(value));
+    const jamFilter = jadwalMain.filter(value => jamTerisi.includes(value));
     console.log(`Jam Filter:`)
     console.log(jamFilter)
 
-    if(opsiBayar == 'DP' || opsiBayar == 'Bayar di Tempat'){
+    if (opsiBayar == 'DP' || opsiBayar == 'Bayar di Tempat') {
       status = 'diterima'
-   
+
     }
     if (jamFilter.length == 0) {
       e.preventDefault();
@@ -211,7 +211,7 @@ export default function Pembayaran() {
       router.back()
     }
     // post structure
-    
+
   };
 
   const uploadToClient = (event) => {
@@ -262,11 +262,11 @@ export default function Pembayaran() {
           <form onSubmit={handlePost}>
             <div className="form-group">
               <label htmlFor="exampleFormControlInput1">Nama Pemesan : </label>
-              <input value={nama} type="text" className="form-control" onChange={(e) => setNama(e.target.value)}/>
+              <input value={nama} type="text" className="form-control" onChange={(e) => setNama(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="exampleFormControlInput1">No. WA Pemesan: </label>
-              <input type="number" className="form-control" value={noWa} onChange={(e) => setNoWa(e.target.value)}/>
+              <input type="number" className="form-control" value={noWa} onChange={(e) => setNoWa(e.target.value)} />
             </div>
             <div className="form-group">
               <label htmlFor="exampleFormControlInput1">Total Bayar : </label>
@@ -296,15 +296,17 @@ export default function Pembayaran() {
                 ))}
               </select>
             </div>
-            <div className="form-group">
-              <label htmlFor="exampleFormControlSelect1">No. Rekening</label>
-              <select className="form-control form-select" id="exampleFormControlSelect1" onChange={(e) => setNoRekening(e.target.value)}>
-                <option>--Pilih No. Rekening--</option>
-                {profil.infoVenue[0].rekening.map((data, i) => (
-                  <option value={data}>{data}</option>
-                ))}
-              </select>
-            </div>
+            {opsiBayar != 'Bayar di Tempat' &&
+              <div className="form-group">
+                <label htmlFor="exampleFormControlSelect1">No. Rekening</label>
+                <select className="form-control form-select" id="exampleFormControlSelect1" onChange={(e) => setNoRekening(e.target.value)}>
+                  <option>--Pilih No. Rekening--</option>
+                  {profil.infoVenue[0].rekening.map((data, i) => (
+                    <option value={data}>{data}</option>
+                  ))}
+                </select>
+              </div>
+            }
             <div className="form-group">
               <div className="mt-2 col-md-12"><label className="labels" htmlFor="formFile">Bukti Bayar</label>
                 <input type="file"
@@ -323,11 +325,11 @@ export default function Pembayaran() {
               <button className="btn btn-primary p-3 fw-bold" type="submit" style={{ backgroundColor: '#006E61' }} disabled={uploading === false ? (false) : (true)} >Kirim</button>
               {uploading &&
                 <>
-                <div className='d-flex flex-row'>
-                  <div className="spinner-loading">
+                  <div className='d-flex flex-row'>
+                    <div className="spinner-loading">
+                    </div>
+                    <span>Sedang upload gambar, Mohon Tunggu...</span>
                   </div>
-                  <span>Sedang upload gambar, Mohon Tunggu...</span>
-                </div>
                 </>
               }
             </div>
