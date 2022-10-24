@@ -171,7 +171,7 @@ export default function DetailNotifikasi() {
                                     </>
                                 ))}
                             </div>
-                            <h5>Pesanan dibuat pada: <b>{transaksi.diterima}</b></h5>
+                            <h5>Pesanan dibuat pada: <b>{`${transaksi.diterimaTgl} ${transaksi.diterimaJam}`}</b></h5>
                         </div>
                     </div>
                 </div>
