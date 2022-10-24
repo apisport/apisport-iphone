@@ -382,7 +382,7 @@ export default function DetailLapangan() {
         let data1 = await response1.json();
         let profil = data1['message'].profil[0]
         let text = `Saya [${profil.nama}] dari tim [${profil.tim}] ingin memesan [${infoLapangan.namaLapangan}] pada tanggal [${tglMain}] dengan jadwal pesan [${jadwalPesan}] dengan Total Harga Rp [${totalHarga.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}]`
-        let urlRed = `https://wa.me/${lapanganRes.infoVenue[0].noWa}?text=${text}`
+        let urlRed = `https://wa.me/+62${lapanganRes.infoVenue[0].noWa}?text=${text}`
         document.location.href = urlRed
     }
 
