@@ -11,8 +11,7 @@ async function getTransaksi(req, res) {
             .collection('transaksi')
             .find({
                 namaVenue: namaVenueReq,
-                status:  'pending',
-                status: 'diterima',
+                status:  {$ne: 'lunas'},
                 buktiBayar: { $ne: null }
             }, { projection: { 'status': 1 } })
             .sort({ idTransaksi: -1 })
