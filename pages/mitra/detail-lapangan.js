@@ -256,9 +256,6 @@ export default function MitraTambahTransaksi({ namaVenueProps }) {
                         <span>{infoLapangan.deskripsi}</span>
                     </div>
                 </div>
-                <div>
-                    <span>Cek er{infoLapangan.minOrder}</span>
-                </div>
             </div>
             <div className='mt-3'>
                 <form>
