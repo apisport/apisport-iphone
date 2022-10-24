@@ -74,7 +74,9 @@ async function deleteTransaksi(req, res) {
 }
 
 async function updateTransaksi(req, res) {
-    const { tim,
+    const { 
+        nama,
+        tim,
         noRekening,
         opsiBayar,
         buktiBayar,
@@ -93,6 +95,7 @@ async function updateTransaksi(req, res) {
             },
             {
                 $set: {
+                    nama:nama,
                     tim: tim,
                     noRekening: noRekening,
                     opsiBayar: opsiBayar,

@@ -186,6 +186,7 @@ export default function Pembayaran() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
+            nama: nama,
             tim: tim,
             noRekening: noRekening,
             opsiBayar: opsiBayar,
@@ -195,10 +196,6 @@ export default function Pembayaran() {
             status: status
           }),
         });
-        let data1 = await update.json();
-        // reload the page
-        // console.log('Updated')
-        // console.log(data1.message)
         router.push('/mitra/home')
         return alert(`Penambahan Transaksi Sukses`)
       } catch (error) {
