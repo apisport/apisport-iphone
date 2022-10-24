@@ -35,15 +35,15 @@ export default function CardTransaksiPending({ props }) {
                     {props.map((data, index) => (
                         <div key={index} className="shadow-sm col-12 col-lg-5 border border-2 mb-4 ml-3 p-3 text-start">
                             <h1>{data.lapangan}</h1>
-                            <h4><b>Nama Pemesan:</b>{data.nama}</h4>
-                            <h4><b>Nama Tim:</b>{data.tim}</h4>
+                            <h4><b>Nama Pemesan:</b> {data.nama}</h4>
+                            <h4><b>Nama Tim:</b> {data.tim}</h4>
                             <h4><b>Opsi Pembayaran:</b> {data.opsiBayar}</h4>
                             {data.opsiBayar != 'DP' ? (
-                                <h4><b>Harga :</b>{` Rp ${data.harga.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}</h4>
+                                <h4><b>Harga :</b> {` Rp ${data.harga.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}</h4>
                             ) : (
                                 <div>
-                                    <h4><b>Harga :</b>{` Rp ${data.harga.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}</h4>
-                                    <h4><b>Harga DP:</b>{` Rp ${data.hargaDP.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}</h4>
+                                    <h4><b>Harga :</b> {` Rp ${data.harga.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}</h4>
+                                    <h4><b>Harga DP:</b> {` Rp ${data.hargaDP.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}</h4>
                                 </div>
                             )}
                             <hr></hr>

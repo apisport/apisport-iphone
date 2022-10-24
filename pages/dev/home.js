@@ -63,6 +63,18 @@ export default function Homedev() {
                   </div>
                 </div>
               </div>
+              <div className="col-md-4 mt-3 col-12">
+                <div className="card shadow-sm">
+                  <div className="card-body">
+                    <h2>DATA SERVICE FEE</h2>
+                    <div className="d-flex justify-content-center align-items-center">
+                      <div className="btn-group text-center">
+                        <a href="/dev/data-fee" className="btn btn-primary btn-lg mt-3 ">View</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

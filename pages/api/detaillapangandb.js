@@ -20,7 +20,7 @@ async function getDetailLapangan(req, res) {
             .collection('mitra')
             .find({
                 namaVenue: namaVenueReq
-            }, { projection: { 'namaVenue': 1, 'hariOperasional': 1 } })
+            }, { projection: { 'namaVenue': 1, 'hariOperasional': 1, 'noWa': 1 } })
             .sort({ idfavorit: -1 })
             .toArray();
         let infoTransaksi = await db

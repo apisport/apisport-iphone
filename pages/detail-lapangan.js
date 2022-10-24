@@ -1,14 +1,9 @@
 //@ts-check
-import Carousel from '../components/user/detail-lapangan/Carousel'
-import CardJadwal from '../components/user/detail-lapangan/CardJadwal'
 import useSWR from "swr";
 import Router, { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useSession, signIn } from 'next-auth/react'
 import Link from 'next/link'
-import { useEffect } from 'react';
-import { Alert } from 'react-bootstrap';
-
 
 export default function DetailLapangan() {
 
@@ -103,13 +98,13 @@ export default function DetailLapangan() {
         const weekday = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
         const weekdayHitung = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
         let today = weekday[day.getUTCDay()]
-        // console.log('Available Hari')
-        // console.log(today)
+        console.log('Available Hari')
+        console.log(today)
 
         let indexAwalHari = weekdayHitung.indexOf(hariTemp[0])
         let indexAkhirHari = weekdayHitung.indexOf(hariTemp[1])
-        // console.log(indexAwalHari)
-        // console.log(indexAkhirHari)
+        console.log(indexAwalHari)
+        console.log(indexAkhirHari)
 
         let totalIndex = indexAkhirHari - indexAwalHari
         let arrayAvailableHariTemp = []
@@ -376,6 +371,20 @@ export default function DetailLapangan() {
         console.log(date)
     }
 
+    const pesanWhatsapp = async (e) => {
+        let url1 = ''
+        if (session) {
+            url1 = `/api/pembayarandb?emailReq=${session.user.email}&namaVenueReq=${lapanganRes.infoVenue[0].namaVenue}&tglMainReq=${tglMain}&jadwalPesanReq=${jadwalPesan}&lapanganReq=${infoLapangan.namaLapangan}`
+        }
+        let response1 = await fetch(url1, {
+            method: 'GET'
+        });
+        let data1 = await response1.json();
+        let profil = data1['message'].profil[0]
+        let text = `Saya [${profil.nama}] dari tim [${profil.tim}] ingin memesan [${infoLapangan.namaLapangan}] pada tanggal [${tglMain}] dengan jadwal pesan [${jadwalPesan}] dengan Total Harga Rp [${totalHarga.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}]`
+        let urlRed = `https://wa.me/${lapanganRes.infoVenue[0].noWa}?text=${text}`
+        document.location.href = urlRed
+    }
 
     return (
         <div className="container mt-4">
@@ -430,9 +439,9 @@ export default function DetailLapangan() {
                         <span>{infoLapangan.deskripsi}</span>
                     </div>
                 </div>
-                {/* <div>
-                    <span>Cek er{infoLapangan.minOrder}</span>
-                </div> */}
+                <div>
+                    <span>{infoLapangan.minOrder}</span>
+                </div>
             </div>
             <div className='mt-3'>
                 <form onSubmit={handlePost}>
@@ -526,17 +535,18 @@ export default function DetailLapangan() {
                         }}> */}
 
                         <button type='submit' className='btn btn-fill text-white mt-3' disabled={(session) ? (false) : (true)} onClick={() => checkValue()}>Pesan</button>
-
                         {/* Session di sini jangan lupa dan button */}
                         {/* disabled={(session) ? (false) : (true)} */}
-                        {
-                            !session &&
-                            <span style={{ color: 'red' }}><b>*Anda harus login/daftar untuk memesan</b> </span>
-                        }
+                        
 
                         {/* </Link> */}
                     </div>
                 </form>
+                <button onClick={pesanWhatsapp} className='btn btn-fill text-white mt-3' disabled={(session) ? (false) : (true)}>Pesan Via Whatsapp</button><br></br>
+                {
+                    !session &&
+                    <span style={{ color: 'red' }}><b>*Anda harus login/daftar untuk memesan</b> </span>
+                }
             </div>
         </div>
 

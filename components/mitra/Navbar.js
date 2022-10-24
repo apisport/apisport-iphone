@@ -16,6 +16,7 @@ const Navbar = ({ namaVenueProps }) => {
 
 
     let transaksi = data['message']
+    console.log(transaksi)
 
     const handleSignOut = (e) => {
         signOut({ callbackUrl: '/' })
