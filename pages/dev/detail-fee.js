@@ -40,6 +40,8 @@ export default function DetailMitra() {
     const kembali = () => {
         Router.back()
     }
+    total1 = `Rp ${total1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`
+    total2 = `Rp ${total2.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`
 
     return (
         <div className="limiter">
@@ -53,7 +55,7 @@ export default function DetailMitra() {
                             <div className=" col-md-12">
                                 <label className="labels"><b>Fee yang harus dibayar Bulan ini - {dateTime}</b></label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                                 <input type="text" className="form-control"
-                                    value={`Rp ${total1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}
+                                    value={total1}
                                     readOnly
                                 />
                             </div>
@@ -62,7 +64,7 @@ export default function DetailMitra() {
                             <div className=" col-md-12">
                                 <label className="labels"><b>Fee Bulan Lalu - {dateTimePrev}</b></label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                                 <input type="text" className="form-control"
-                                    value={`Rp ${total2.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`}
+                                    value={total2}
                                     readOnly
                                 />
                             </div>
