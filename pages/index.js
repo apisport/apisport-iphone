@@ -34,12 +34,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <meta name="apple-mobile-web-app-capable" content="yes"></meta>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black"></meta>
-        <meta name="format-detection" content="telephone=no"></meta>
-        <meta name="viewport" content="width = device-width"/>
-          <meta name="viewport" content="initial-scale = 1.0"/>
-        <meta name = "viewport" content = "width = 320, initial-scale = 2.3, user-scalable = no"/>
+       
+    
         <meta name="google" content="nositelinkssearchbox" key="sitelinks" />
         <meta name="google" content="notranslate" key="notranslate" />
         <meta name="googlebot" content="noindex,nofollow" />

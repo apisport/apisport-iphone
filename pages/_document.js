@@ -7,7 +7,7 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <meta name="viewport" content="width=device-width"></meta>
+                    {/* <meta name="viewport" content="width=device-width"></meta>
                     <meta name="viewport" content="initial-scale=1.0"></meta>
                     <meta name="viewport" content="width=device-width"></meta>
                     <meta name="viewport" content="user-scalable=no, width=device-width"/>
@@ -51,7 +51,7 @@ class MyDocument extends Document {
 
                     <link rel='manifest' href="/manifest.json" />
                     <link rel='apple-touch-icon' href="/icon.png"></link>
-                    <meta name='theme-color' content='#fff' />
+                    <meta name='theme-color' content='#fff' /> */}
                     
                 </Head>
                 <body>

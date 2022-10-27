@@ -73,7 +73,7 @@ export default function CariLapangan() {
                             <Link href={{
                                 pathname: '/cari-lapangan',
                                 query: {
-                                  
+                                  search: searchTerm
                                 }
 
                             }}>
@@ -94,7 +94,7 @@ export default function CariLapangan() {
                                             <select className='form-control form-select' id='inKategori'>
                                                 <option value=''>--- Pilih Kategori ---</option>
                                                 <option value='Futsal'>Futsal</option>
-                                                <option value='Bulutangkis'>Bulutangkis</option>
+                                                <option value='Bulu Tangkis'>Bulu Tangkis</option>
                                                 <option value='Voli'>Voli</option>
                                                 <option value='Basket'>Basket</option>
                                             </select>

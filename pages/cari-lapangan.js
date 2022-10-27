@@ -56,7 +56,7 @@ export default function CariLapangan() {
                             <Link href={{
                                 pathname: '/cari-lapangan',
                                 query: {
-                                    search: data._id
+                                    search: searchTerm
                                 }
 
                             }}>

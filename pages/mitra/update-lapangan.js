@@ -99,11 +99,11 @@ export default function Updetlapangan() {
             // await console.log('Secure URL')
             // await console.log(response.secure_url)
             imageUrl.push(response.secure_url)
-            
+
             // console.log('Secure URL Array')
             // console.log(imageUrl)
         }
-        for (let i = 0; i < _gambar.length; i++){
+        for (let i = 0; i < _gambar.length; i++) {
             imageUrl.push(_gambar[i])
         }
         setGambar(Object.assign(_gambar, imageUrl))
@@ -214,6 +214,9 @@ export default function Updetlapangan() {
     const bagiJamMalam = () => {
         let malamMulai = parseInt(document.getElementById('jamMalamMulai').value);
         let malamAkhir = parseInt(document.getElementById('jamMalamAkhir').value);
+        if (malamAkhir == 0) {
+            malamAkhir = 24
+        }
         let selisih = malamAkhir - malamMulai
         if (Object.keys(_jadwalMalam).length > 0) {
             for (let key in _jadwalMalam) {
@@ -269,6 +272,9 @@ export default function Updetlapangan() {
         //Malam
         let malamMulai = parseInt(document.getElementById('jamMalamMulai').value);
         let malamAkhir = parseInt(document.getElementById('jamMalamAkhir').value);
+        if (malamAkhir == 0) {
+            malamAkhir = 24
+        }
         let selisihMalam = malamAkhir - malamMulai
         for (let i = 0; i < selisihMalam; i++) {
             gabunganHarga.push(_hargaMalam)
@@ -575,20 +581,20 @@ export default function Updetlapangan() {
                                                 backgroundColor: '#006E61', color: 'rgb(255, 255, 255)',
                                                 borderRadius: '5cm', width: 500, height: 50
                                             }}
-                                                disabled={uploading === false ? (false) : (true)}
+                                            disabled={uploading === false ? (false) : (true)}
                                         >UPDATE</button>
-                                        </div>
-                                        <div className='container d-flex flex-row justify-content-center mt-2 mb-2'>
-                                            {uploading &&
-                                                <>
-                                                    <div className='d-flex flex-row'>
-                                                        <div className="spinner-loading">
-                                                        </div>
-                                                        <span>Sedang upload gambar, Mohon Tunggu...</span>
+                                    </div>
+                                    <div className='container d-flex flex-row justify-content-center mt-2 mb-2'>
+                                        {uploading &&
+                                            <>
+                                                <div className='d-flex flex-row'>
+                                                    <div className="spinner-loading">
                                                     </div>
-                                                </>
-                                            }
-                                        </div>
+                                                    <span>Sedang upload gambar, Mohon Tunggu...</span>
+                                                </div>
+                                            </>
+                                        }
+                                    </div>
                                 </>
                             )}
 

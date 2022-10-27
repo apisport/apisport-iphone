@@ -31,7 +31,7 @@ async function getProfil(req, res) {
             .collection('mitra')
             .find({
                 namaVenue: namaVenueReq
-            }, { projection: { 'namaVenue': 1, 'rekening': 1, 'opsiBayar': 1, 'DP': 1 } })
+            }, { projection: { 'namaVenue': 1, 'rekening': 1, 'opsiBayar': 1, 'DP': 1, 'email': 1 } })
             .sort({ idfavorit: -1 })
             .toArray();
         let hasil = {}

@@ -387,7 +387,6 @@ export default function EditMitra() {
                             <div className="mt-2 col-md-12">
                                 <label className="labels">Instagram</label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                                 <input type="text" className="form-control"
-                                    required
                                     value={_instagram}
                                     onChange={(e) => setInstagram(e.target.value)}
                                 />

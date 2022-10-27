@@ -14,7 +14,7 @@ export default function Datatransaksi({ namaVenueProps }) {
 
     let router = useRouter()
     const fetcher = (...args) => fetch(...args).then((res) => res.json())
-    const { data: data, error } = useSWR(`/api/transaksidb?namaVenueReq=${namaVenueProps}`, fetcher)
+    const { data: data, error } = useSWR(`/api/datatransaksidb?namaVenueReq=${namaVenueProps}`, fetcher)
 
     if (!data) {
         return <div className="spinner"></div>
@@ -82,7 +82,10 @@ export default function Datatransaksi({ namaVenueProps }) {
                     </thead>
                     <tbody>
                         {transaksi.length === 0 ? (
-                            <h4>Tidak ada data</h4>
+                            <tr>
+                                <td colSpan={9}>Tidak ada data transaksi lunas yang tersedia</td>
+                            </tr>
+                            
                         ) : (
                             <>
                                 {currentPosts.map((data, index) => (

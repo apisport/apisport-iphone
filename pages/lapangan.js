@@ -5,6 +5,7 @@ import Pagination from '../components/Pagination'
 import Carilokasi from "../components/provinsi";
 import { useState } from 'react'
 import useSWR from 'swr'
+import Link from 'next/link'
 // import Carilokasi from '../components/user/cari-lokasi'
 
 
@@ -67,8 +68,8 @@ export default function Lapangan() {
                 <div className="container my-4">
                     <div className="row d-flex justify-content-center align-items-center">
                         <div className="btn-group col-md-12">
-                            <input type="text" className="form-control col-10 mt-2 col-md-10" placeholder="Cari Lapangan Disini" />
-                            <a href='/cari-lapangan' className="form-control col-2 mt-2 col-sm-2 btn shadow-sm" style={{ backgroundColor: '#ffbe2e' }}><button ><i className="fa fa-search text-white"></i></button></a>
+                            <input type="text" className="form-control col-10 mt-2 col-md-10" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Cari Lapangan Disini" />
+                            <Link href={`/cari-lapangan?search=${searchTerm}`} ><button className="form-control col-2 mt-2 col-sm-2 btn shadow-sm" style={{ backgroundColor: '#ffbe2e' }}><i className="fa fa-search text-white"></i></button></Link>
                         </div>
                     </div>
                 </div>
@@ -85,7 +86,7 @@ export default function Lapangan() {
                                     <select className='form-control form-select' id='inKategori'>
                                         <option value=''>--- Pilih Kategori ---</option>
                                         <option value='Futsal'>Futsal</option>
-                                        <option value='Bulutangkis'>Bulutangkis</option>
+                                        <option value='Bulu Tangkis'>Bulu Tangkis</option>
                                         <option value='Voli'>Voli</option>
                                         <option value='Basket'>Basket</option>
                                     </select>

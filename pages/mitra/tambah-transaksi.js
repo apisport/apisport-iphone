@@ -226,7 +226,7 @@ export default function MitraTambahTransaksi({ namaVenueProps }) {
                 let data = await response.json();
                 if (data.success) {
                     // reset the fields
-                    alert('Jadwal Berhasil dipesan, Mohon untuk menyelesaikan pembayaran di halaman berikutnya!')
+                    alert('Jadwal Berhasil dibooking, Mohon untuk menyelesaikan form di halaman berikutnya!')
                     console.log('Object ID:')
                     console.log(data.message)
                     router.push({

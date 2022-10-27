@@ -99,7 +99,6 @@ function MyApp({ Component, pageProps }) {
       });
       // reset the deleting state
       // reload the page
-      alert(`Transaksi dengan id ${idParam} terhapus`)
     } catch (error) {
       // stop deleting state
     }

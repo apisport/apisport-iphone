@@ -106,7 +106,7 @@ export default function Pembayaran() {
     noWa = profil.profil[0].noWa
     email = profil.profil[0].email
     diterima = dateTime
-    
+
   }
   setValue()
 
@@ -120,11 +120,11 @@ export default function Pembayaran() {
       setHargaDP('-')
     }
     // console.log(opsiBayarDP)
-    
+
   }
 
   const hitungHargaDP = () => {
-    let DPhitung = parseInt(profil.infoVenue[0].DP) 
+    let DPhitung = parseInt(profil.infoVenue[0].DP)
     let hargaDPHitung = harga - (((DPhitung / 100) * harga))
     let hargaDPhitungString = hargaDPHitung.toString()
     setHargaDP(hargaDPhitungString)
@@ -160,7 +160,7 @@ export default function Pembayaran() {
     // reset error and message
     setMessage('');
     // fields check
-    if (!nama || !email || !noWa || !noRekening || !opsiBayar || !buktiBayar || !namaVenue || !tglMain || !jadwalMain || !harga || !status || !hargaDP || !diterima) {
+    if (!nama || !email || !noWa || !opsiBayar || !buktiBayar || !namaVenue || !tglMain || !jadwalMain || !harga || !status || !hargaDP || !diterima) {
       alert('Tolong isi semua kolom')
       return setError1('All fields are required');
     }
@@ -191,7 +191,7 @@ export default function Pembayaran() {
     console.log(jamTerisi)
 
     // let jamFilter = jamTerisi.filter(val => !jadwalMain.includes(val));
-    const jamFilter =jadwalMain.filter(value => jamTerisi.includes(value));
+    const jamFilter = jadwalMain.filter(value => jamTerisi.includes(value));
     console.log(`Jam Filter:`)
     console.log(jamFilter)
 
@@ -202,6 +202,7 @@ export default function Pembayaran() {
       // fields check
       try {
         // Update post
+        let email = await fetch(`/api/notifikasi/transaksipending?userReq=${nama}&tglMainReq=${tglMain}&lapanganReq=${lapangan}&namaVenueReq=${namaVenueReq}&emailReq=${profil.infoVenue[0].email}`)
         let update = await fetch('/api/transaksidb', {
           method: 'PUT',
           headers: {
@@ -232,7 +233,7 @@ export default function Pembayaran() {
       router.back()
     }
     // post structure
-    
+
   };
 
   const uploadToClient = (event) => {
@@ -327,15 +328,17 @@ export default function Pembayaran() {
                 ))}
               </select>
             </div>
-            <div className="form-group">
-              <label htmlFor="exampleFormControlSelect1">No. Rekening</label>
-              <select className="form-control form-select" id="exampleFormControlSelect1" onChange={(e) => setNoRekening(e.target.value)}>
-                <option>--Pilih No. Rekening--</option>
-                {profil.infoVenue[0].rekening.map((data, i) => (
-                  <option value={data}>{data}</option>
-                ))}
-              </select>
-            </div>
+            {opsiBayar != 'Bayar di Tempat' &&
+              <div className="form-group">
+                <label htmlFor="exampleFormControlSelect1">No. Rekening</label>
+                <select className="form-control form-select" id="exampleFormControlSelect1" onChange={(e) => setNoRekening(e.target.value)}>
+                  <option>--Pilih No. Rekening--</option>
+                  {profil.infoVenue[0].rekening.map((data, i) => (
+                    <option value={data}>{data}</option>
+                  ))}
+                </select>
+              </div>
+            }
             <div className="form-group">
               <div className="mt-2 col-md-12"><label className="labels" htmlFor="formFile">Bukti Bayar</label>
                 <input type="file"
@@ -357,11 +360,11 @@ export default function Pembayaran() {
               <button className="btn btn-primary p-3 fw-bold" type="submit" style={{ backgroundColor: '#006E61' }} disabled={uploading === false ? (false) : (true)} >Kirim</button>
               {uploading &&
                 <>
-                <div className='d-flex flex-row'>
-                  <div className="spinner-loading">
+                  <div className='d-flex flex-row'>
+                    <div className="spinner-loading">
+                    </div>
+                    <span>Sedang upload gambar, Mohon Tunggu...</span>
                   </div>
-                  <span>Sedang upload gambar, Mohon Tunggu...</span>
-                </div>
                 </>
               }
             </div>

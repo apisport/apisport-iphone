@@ -84,7 +84,7 @@ export default function Addlapangan() {
             setUploading(false)
         }
         //Uploading
-        
+
         // console.log('Secure URL State')
         // console.log(gambar)
 
@@ -176,7 +176,13 @@ export default function Addlapangan() {
     const bagiJamMalam = () => {
         let malamMulai = parseInt(document.getElementById('jamMalamMulai').value);
         let malamAkhir = parseInt(document.getElementById('jamMalamAkhir').value);
+        if (malamAkhir === 0) {
+            malamAkhir = 24
+        }
+        console.log(malamAkhir)
         let selisih = malamAkhir - malamMulai
+        console.log('selisih Jam Malam')
+        console.log(selisih)
         if (Object.keys(jadwalMalam).length > 0) {
             for (let key in jadwalMalam) {
                 delete jadwalMalam[key]
@@ -231,6 +237,9 @@ export default function Addlapangan() {
         //Malam
         let malamMulai = parseInt(document.getElementById('jamMalamMulai').value);
         let malamAkhir = parseInt(document.getElementById('jamMalamAkhir').value);
+        if (malamAkhir == 0) {
+            malamAkhir = 24
+        }
         let selisihMalam = malamAkhir - malamMulai
         for (let i = 0; i < selisihMalam; i++) {
             gabunganHarga.push(hargaMalam)
@@ -380,74 +389,74 @@ export default function Addlapangan() {
                         <div className=".d-block .d-sm-none" style={{ color: 'black' }}>
                             <div className="col-sm-12" >
                                 <h6>Jam Pagi<i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i></h6>
-                            
-                            <div className='row'>
-                                <div className='col-12 col-sm-3 mb-2'>
-                                    <input type="time" className="form-control " placeholder="Mulai"
-                                        id='jamPagiMulai'
-                                        required />
-                                </div>
-                                <div className='col-12 col-sm-1 mb-2 text-center'>
-                                    <strong>_</strong>
-                                </div>
-                                <div className='col-12 col-sm-3 mb-2'>
-                                    <input type="time" className="form-control" placeholder="Akhir" required
-                                        id='jamPagiAkhir'
-                                    />
-                                </div>
-                                <div className='col-12 col-sm-5 mb-2'>
-                                    <div className='d-flex flex-row'>
-                                        <div className='col-1 col-sm-2'>
-                                            <label>Rp</label>
-                                        </div>
-                                        <div className='col-11 col-sm-10'>
-                                            <input type="number" className="form-control" placeholder="Harga Pagi"
-                                                required
-                                                value={hargaPagi}
-                                                min="0.01" step="0.01"
-                                                onChange={(e) => setHargaPagi(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                            <h6>Jam Malam ( Isi jika harga berbeda )</h6>
-                            <div className='row'>
-                                <div className='col-12 col-sm-3 mb-2'>
-                                    <input type="time" className="form-control "
-                                        id='jamMalamMulai'
-                                        placeholder="Mulai" /></div>
-                                <div className='col-12 col-sm-1 mb-2 text-center'>
-                                    <strong>_</strong>
-                                </div>
-                                <div className='col-12 col-sm-3 mb-2'>
-                                    <input type="time"
-                                        id='jamMalamAkhir'
-                                        className="form-control" placeholder="Akhir" />
-                                </div>
-                                <div className='col-12 col-sm-5 mb-2'>
-                                    <div className='d-flex flex-row'>
-                                        <div className='col-1 col-sm-2'>
-                                            <label>Rp</label>
-                                        </div>
-                                        <div className='col-11 col-sm-10'>
-                                            <input type="number" className="form-control"
-                                                placeholder="Harga Malam"
-                                                value={hargaMalam}
-                                                onChange={(e) => setHargaMalam(e.target.value)}
-                                            />
-                                        </div>
 
+                                <div className='row'>
+                                    <div className='col-12 col-sm-3 mb-2'>
+                                        <input type="time" className="form-control " placeholder="Mulai"
+                                            id='jamPagiMulai'
+                                            required />
+                                    </div>
+                                    <div className='col-12 col-sm-1 mb-2 text-center'>
+                                        <strong>_</strong>
+                                    </div>
+                                    <div className='col-12 col-sm-3 mb-2'>
+                                        <input type="time" className="form-control" placeholder="Akhir" required
+                                            id='jamPagiAkhir'
+                                        />
+                                    </div>
+                                    <div className='col-12 col-sm-5 mb-2'>
+                                        <div className='d-flex flex-row'>
+                                            <div className='col-1 col-sm-2'>
+                                                <label>Rp</label>
+                                            </div>
+                                            <div className='col-11 col-sm-10'>
+                                                <input type="number" className="form-control" placeholder="Harga Pagi"
+                                                    required
+                                                    value={hargaPagi}
+                                                    min="0.01" step="0.01"
+                                                    onChange={(e) => setHargaPagi(e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='d-flex-end flex-row justify-content-end mt-3'>
-                                <input type='checkbox' value={'true'} id='minOrderCheck' onClick={setCheck} />
-                                <label>Minimum Pesan 2 Jam</label>
-                            </div>
-                            <div className='d-flex-end flex-row justify-content-end mt-3'>
-                                <input type='button' className='btn-fill text-white' onClick={lihatJadwal} value='CEK JADWAL' />
-                            </div>
+                                <h6>Jam Malam ( Isi jika harga berbeda )</h6>
+                                <div className='row'>
+                                    <div className='col-12 col-sm-3 mb-2'>
+                                        <input type="time" className="form-control "
+                                            id='jamMalamMulai'
+                                            placeholder="Mulai" /></div>
+                                    <div className='col-12 col-sm-1 mb-2 text-center'>
+                                        <strong>_</strong>
+                                    </div>
+                                    <div className='col-12 col-sm-3 mb-2'>
+                                        <input type="time"
+                                            id='jamMalamAkhir'
+                                            className="form-control" placeholder="Akhir" />
+                                    </div>
+                                    <div className='col-12 col-sm-5 mb-2'>
+                                        <div className='d-flex flex-row'>
+                                            <div className='col-1 col-sm-2'>
+                                                <label>Rp</label>
+                                            </div>
+                                            <div className='col-11 col-sm-10'>
+                                                <input type="number" className="form-control"
+                                                    placeholder="Harga Malam"
+                                                    value={hargaMalam}
+                                                    onChange={(e) => setHargaMalam(e.target.value)}
+                                                />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='d-flex-end flex-row justify-content-end mt-3'>
+                                    <input type='checkbox' value={'true'} id='minOrderCheck' onClick={setCheck} />
+                                    <label>Minimum Pesan 2 Jam</label>
+                                </div>
+                                <div className='d-flex-end flex-row justify-content-end mt-3'>
+                                    <input type='button' className='btn-fill text-white' onClick={lihatJadwal} value='CEK JADWAL' />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -478,21 +487,21 @@ export default function Addlapangan() {
                                                 backgroundColor: '#006E61', color: 'rgb(255, 255, 255)',
                                                 borderRadius: '5cm', width: 500, height: 50
                                             }}
-                                                disabled={uploading === false ? (false) : (true)}
+                                            disabled={uploading === false ? (false) : (true)}
                                         >SIMPAN</button>
 
-                                        </div>
-                                        <div className='container d-flex flex-row justify-content-center mt-2 mb-2'>
-                                            {uploading &&
-                                                <>
-                                                    <div className='d-flex flex-row'>
-                                                        <div className="spinner-loading">
-                                                        </div>
-                                                        <span>Sedang upload gambar, Mohon Tunggu...</span>
+                                    </div>
+                                    <div className='container d-flex flex-row justify-content-center mt-2 mb-2'>
+                                        {uploading &&
+                                            <>
+                                                <div className='d-flex flex-row'>
+                                                    <div className="spinner-loading">
                                                     </div>
-                                                </>
-                                            }
-                                        </div>
+                                                    <span>Sedang upload gambar, Mohon Tunggu...</span>
+                                                </div>
+                                            </>
+                                        }
+                                    </div>
 
                                 </>
                             )}
