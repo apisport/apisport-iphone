@@ -40,8 +40,7 @@ export default function DetailMitra() {
     const kembali = () => {
         Router.back()
     }
-    total1 = `Rp ${total1.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`
-    total2 = `Rp ${total2.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")}`
+
 
     return (
         <div className="limiter">
