@@ -40,7 +40,14 @@ export default function DetailMitra() {
     const kembali = () => {
         Router.back()
     }
-
+    const rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: 'currency',
+            currency: 'IDR'
+        }).format(number);
+    }
+    let total1x = rupiah(total1)
+    let total2x = rupiah(total2)
 
     return (
         <div className="limiter">
@@ -54,7 +61,7 @@ export default function DetailMitra() {
                             <div className=" col-md-12">
                                 <label className="labels"><b>Fee yang harus dibayar Bulan ini - {dateTime}</b></label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                                 <input type="text" className="form-control"
-                                    value={total1}
+                                    value={total1x}
                                     readOnly
                                 />
                             </div>
@@ -63,7 +70,7 @@ export default function DetailMitra() {
                             <div className=" col-md-12">
                                 <label className="labels"><b>Fee Bulan Lalu - {dateTimePrev}</b></label><i style={{ color: '#ff0000', fontSize: 'larger' }}>*</i>
                                 <input type="text" className="form-control"
-                                    value={total2}
+                                    value={total2x}
                                     readOnly
                                 />
                             </div>
